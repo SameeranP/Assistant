@@ -5,7 +5,7 @@ from pykeyboard import PyKeyboard
 
 count = 0
   
-url = 'https://blog.ipleaders.in/delivery-flying-robots-drone-technology-ready-transform-logistics-lives/'
+url = 'URL of the blog needed to be visited'
 k = PyKeyboard()
 
 
@@ -17,7 +17,7 @@ k = PyKeyboard()
 # k.release_key( k.alt_key )
 
 while count< 200:
-    webbrowser.get('C:/Users/ASUS/Desktop/Tor Browser/Browser/firefox.exe %s ').open(url, new=0)
+    webbrowser.get('C:/Users/ASUS/Desktop/Tor Browser/Browser/firefox.exe %s ').open(url, new=0) //Enter the location of TOR browser as stored on your PC
 
     # webbrowser.open(url, new=0)
     # k.press_key( k.alt_key )
