@@ -15,8 +15,8 @@ name = "Sam"
 engine = pyttsx3.init("sapi5") #to take input of voice
 voices = engine.getProperty('voices')
 #print(voices[1].id)
-engine.setProperty('voice', r'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0') #used stackoverflow to get a female voice
-#engine.setProperty('voices', voices[1].id) #Adds a property value to set to the event queue. which voice to be used
+#engine.setProperty('voice', r'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0') #used stackoverflow to get a female voice
+engine.setProperty('voices', voices[1].id) #Adds a property value to set to the event queue. which voice to be used
 
 #speak function
 def speak(audio):
