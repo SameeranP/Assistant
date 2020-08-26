@@ -1,3 +1,5 @@
 # Assistant
-##Requirements
-pip install pyttsx3
+## Requirements:
+### pip install pyttsx3
+### pip install speechRecognition
+### pip install wikipedia
