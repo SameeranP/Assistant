@@ -11,7 +11,7 @@ import urllib.parse
 import re
 from bs4 import BeautifulSoup
 
-name = "Sam"
+name = "Sam" #your name here
 engine = pyttsx3.init("sapi5") #to take input of voice
 voices = engine.getProperty('voices')
 #print(voices[1].id)
@@ -27,13 +27,13 @@ def WishMe():
     hour = int(datetime.datetime.now().hour)
     #minute = int(datetime.datetime.now().minute)
     if hour>=4 and hour<12:
-        speak(f"Goood morning '{name}'") #replace with name variable and change value of var name.
+        speak(f"Goood morning {name}") #replace with name variable and change value of var name.
     
     elif hour>=12 and hour<=18:
-        speak("Good afternoon Sam")
+        speak(f"Good afternoon {name}")
     
     else:
-        speak("Good Evening Sam")
+        speak(f"Good Evening {name}")
 
     speak("I am your assistant Pepper. How may I assist you?")
 
@@ -55,7 +55,7 @@ def takeCommand():
         r.dynamic_energy_threshold = True  
 
         print("Recognising...")
-        query = r.recognize_google(audio, language= 'en-in') #r.recognise_xyz, many search engines are available, use at convinience (can use google cloud too)
+        query = r.recognize_google(audio, language= 'en-in') #r.recognise_xyz, many search engines are available, use at convinience 
         print(f"Did you say: '{query}' ? " ) 
         
     except Exception:
@@ -67,6 +67,12 @@ def takeCommand():
     
     return query
 
+def playYT(search):
+    results = YoutubeSearch(search, max_results=10).to_dict()
+    # element1 = results[0]
+    link = "https://www.youtube.com" + results[0]['url_suffix']
+    webbrowser.open(url=link)
+    
 #main function
 if __name__ == "__main__":
     WishMe()
@@ -88,11 +94,11 @@ if __name__ == "__main__":
         elif 'stop' in query:
             hour = int(datetime.datetime.now().hour)
             if hour>=4 and hour<=18:
-                 speak("Goodbye sam, have a nice day")
+                 speak(f"Goodbye {name}, have a nice day")
 
     
             else:
-             speak("Goodbye, have Good Evening ahead Sam")
+             speak(f"Goodbye, have Good Evening ahead {name}")
            
             break
         elif 'open youtube' in query:
@@ -112,7 +118,7 @@ if __name__ == "__main__":
 #Open google and search
         elif 'google' in query:
             query = query.replace("google","")
-            chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s'
+            chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s' #your chrome storage address path here
             for url in search(query, tld="co.in", num=1, stop = 1, pause = 2):
                 webbrowser.open("https://google.com/search?q=%s" % query)
            
@@ -124,17 +130,10 @@ if __name__ == "__main__":
             url = "https://www.youtube.com/results?search_query=" + q
             webbrowser.open(url)
 #open youtube and search
-        elif 'youtube' in query:
-            query=query.replace("youtube","")
-            query_string = urllib.parse.urlencode({"search_query" : query})
-            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
-            search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
-          
-            webbrowser.get("C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s").open("http://www.youtube.com/watch?v=" + search_results[0])
-
-            for i in search_results:
-            #  # print(i)
-                 print("http://www.youtube.com/watch?v=" + i)
+        elif 'play' in query:
+            query=query.replace("play","")
+            playYT(query)
+            
 
         # elif 'YouTube search' in query:
         #     query=query.replace("youtube search for", "")
@@ -143,7 +142,7 @@ if __name__ == "__main__":
         elif 'folder' in query:
             try:
                 query = query.replace("folder","") 
-                codePath = f"C:\\Users\\ASUS\\Desktop\\{query}"
+                codePath = f"C:\\Users\\ASUS\\Desktop\\{query}" #Insert your desktop codepath here
                 #print(query)
                 os.startfile(codePath)
             except Exception:
